@@ -174,6 +174,9 @@ export default class DOM {
       return this.elems[0];
    }
    static decodeHtmlEntities(str) {
+      if (typeof str !== "string" || str.length === 0) {
+         return str;
+      }
       const entities = {
          "&amp;": "&",
          "&lt;": "<",

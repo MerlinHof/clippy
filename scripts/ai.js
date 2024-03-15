@@ -34,9 +34,9 @@ export async function showFactCheck(clip, visually = true) {
       if (visually) GeneralFunctions.showAiLimitDialog();
       return;
    }
-   answer = answer.replace(/,(\s*[}\]])/g, "$1");
-   const obj = JSON.parse(answer);
-   const score = Math.round(parseFloat(obj.credibility, 10));
+   const obj = AiDataNotation.parse(answer);
+   const score = Math.round(parseFloat(obj[0]["CREDIBILITY"], 10));
+   const analysis = obj[0]["ANALYSIS"];
 
    const answerDialog = new Dialog();
    answerDialog.withSelectButton = false;
@@ -46,7 +46,7 @@ export async function showFactCheck(clip, visually = true) {
    answerDialog.content = DOM.create("div")
       .append(DOM.create("div #credibilityScore").setText(`Credibility of ${score}%`))
       .append(DOM.create("br"))
-      .append(DOM.create("t").setText(obj.analysis || obj.analyse))
+      .append(DOM.create("t").setText(analysis))
       .getFirstElement();
 
    if (visually) {
@@ -76,7 +76,7 @@ export async function showFactCheck(clip, visually = true) {
    }
 
    if (score <= 50) {
-      DOM.select("credibilityWarningText").setText(obj.analysis || obj.analyse);
+      DOM.select("credibilityWarningText").setText(analysis);
       DOM.select("credibilityWarningContainer").setStyle({ display: "block" });
    }
 }
@@ -96,18 +96,23 @@ export async function showQuestion(clip) {
       progressDialog.title = "Generating...";
       progressDialog.show();
       const suffix = `\n<END OF TEXT>\n\nIMPORTANT SYSTEM MESSAGE: The following is the said question about the above text to which I will respond directly and naturally: "${question}"`;
-      callLLM("question", `${clip.title}: ${clip.text}`, suffix).then((answer) => {
+      callLLM("question", `${clip.title}: ${clip.text}`, suffix).then((res) => {
          progressDialog.close();
-         if (!answer) {
+         if (!res) {
             GeneralFunctions.showAiLimitDialog();
             return;
          }
-         const obj = JSON.parse(answer);
+         const obj = AiDataNotation.parse(res);
+         const emojis = obj[0]["E"] || "";
+         const betterQuestion = obj[0]["Q"] || "";
+         const answer = obj[0]["A"] || "";
+
          const answerDialog = new Dialog();
          answerDialog.withSelectButton = false;
          answerDialog.imagePath = "/assets/images/magic.png";
-         answerDialog.title = `Ai Answer ${obj.emojis}`;
-         answerDialog.content = obj.answer;
+         // answerDialog.title = `Ai Answer ${emojis}`;
+         answerDialog.title = `${betterQuestion} ${emojis}`;
+         answerDialog.content = answer;
          answerDialog.isAiFeatureDialog = true;
          answerDialog.show();
 
@@ -115,9 +120,9 @@ export async function showQuestion(clip) {
          const questions = JSON.parse(localStorage.getItem(cookieName) || "[]");
          if (!questions.some((q) => q.question == question)) {
             questions.push({
-               question: obj.question,
-               answer: obj.answer,
-               emojis: obj.emojis,
+               Q: betterQuestion,
+               A: answer,
+               E: emojis,
             });
             localStorage.setItem(cookieName, JSON.stringify(questions));
             generateFaq(clip);
@@ -142,12 +147,11 @@ export async function generateFaq(clip) {
       DOM.select("aiFaqElementContainer").setText("Limit reached, try again tomorrow");
       return;
    }
-   answer = answer.replace(/,(\s*[}\]])/g, "$1");
-   const obj = JSON.parse(answer);
 
+   let faq = AiDataNotation.parse(answer);
    const questions = JSON.parse(localStorage.getItem(`questions_${clip.id}`) || "[]");
    questions.forEach((question) => {
-      obj.push(question);
+      faq.push(question);
    });
 
    DOM.select("aiFaqQuestionButton").setStyle({ display: "inline-flex" });
@@ -156,15 +160,13 @@ export async function generateFaq(clip) {
    });
 
    let container = DOM.select("aiFaqElementContainer").setContent("");
-   for (let faqKey in obj) {
-      if (obj.hasOwnProperty(faqKey)) {
-         const faq = obj[faqKey];
-         DOM.create("div .aiFaqElement")
-            .append(DOM.create("t .aiFaqElementEmojis").setText(faq.emojis))
-            .append(DOM.create("t .aiFaqElementQuestion").setText(faq.question))
-            .append(DOM.create("t .aiFaqElementAnswer").setText(faq.answer))
-            .appendTo(container);
-      }
+   for (let i = 0; i < faq.length; i++) {
+      const faqElement = faq[i];
+      const faqDiv = DOM.create("div .aiFaqElement");
+      faqDiv.append(DOM.create("t .aiFaqElementEmojis").setText(faqElement["E"] || ""));
+      faqDiv.append(DOM.create("t .aiFaqElementQuestion").setText(faqElement["Q"] || ""));
+      faqDiv.append(DOM.create("t .aiFaqElementAnswer").setText(faqElement["A"] || ""));
+      container.append(faqDiv);
    }
 }
 
@@ -201,4 +203,35 @@ async function callLLM(action, message, suffix) {
    if (data.error) return false;
    localStorage.setItem(cookieName, data.answer);
    return data.answer;
+}
+
+class AiDataNotation {
+   // static parse(str) {
+   //    let obj = {};
+   //    const parts = str.split(/\[(.+?)\]:/);
+   //    for (let i = 1; i < parts.length; i += 2) {
+   //       const marker = parts[i].trim();
+   //       const value = parts[i + 1].trim();
+
+   //       if (!Array.isArray(obj[marker])) {
+   //          obj[marker] = [];
+   //       }
+   //       obj[marker].push(value);
+   //    }
+   //    return obj;
+   // }
+   static parse(str) {
+      let obj = [{}];
+      const parts = str.split(/\[(.+?)\]:/);
+      for (let i = 1; i < parts.length; i += 2) {
+         const marker = parts[i].trim();
+         const value = parts[i + 1].trim();
+
+         if (obj[obj.length - 1].hasOwnProperty(marker)) {
+            obj.push({});
+         }
+         obj[obj.length - 1][marker] = value;
+      }
+      return obj;
+   }
 }
