@@ -109,8 +109,6 @@ export async function showQuestion(clip) {
 
          const answerDialog = new Dialog();
          answerDialog.withSelectButton = false;
-         answerDialog.imagePath = "/assets/images/magic.png";
-         // answerDialog.title = `Ai Answer ${emojis}`;
          answerDialog.title = `${betterQuestion} ${emojis}`;
          answerDialog.content = answer;
          answerDialog.isAiFeatureDialog = true;
