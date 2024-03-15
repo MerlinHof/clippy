@@ -35,8 +35,8 @@ export async function showFactCheck(clip, visually = true) {
       return;
    }
    const obj = AiDataNotation.parse(answer);
-   const score = Math.round(parseFloat(obj[0]["CREDIBILITY"], 10));
-   const analysis = obj[0]["ANALYSIS"];
+   const score = Math.round(parseFloat(obj[0]["C"], 10));
+   const analysis = obj[0]["A"];
 
    const answerDialog = new Dialog();
    answerDialog.withSelectButton = false;
