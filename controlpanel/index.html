@@ -1,0 +1,14 @@
+<html>
+   <body style="width: 100%; height: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center">
+      <div style="max-width: 800px">
+         <h1>Important Note</h1>
+         <div id="message" style="font-size: 120%"></div>
+      </div>
+   </body>
+</html>
+
+<script>
+   let currentURL = window.location.href;
+   let newURL = currentURL.replace("/controlpanel/", "/").replace("&key=", "&panelkey=");
+   document.getElementById("message").innerHTML = `Due to an internal restructuring and clean-up of Clippy, your Control Panel was moved. Don't worry, nothing's lost - from now on, you can find your Control Panel here:<br><br><a href="${newURL}">${newURL}</a>`;
+</script>

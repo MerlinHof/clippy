@@ -1,0 +1,429 @@
+/* -------------------------------------------------------------------------------- */
+/* Markdown Stylization */
+
+#viewerText p {
+   margin-top: 10px;
+   display: block;
+}
+
+#viewerText h1 {
+   font-size: 43px;
+   color: var(--negativeThemeColor);
+   font-family: boldest;
+   margin-top: 150px;
+   margin-bottom: 20px;
+}
+
+#viewerText h2 {
+   font-size: 34px;
+   color: var(--negativeThemeColor);
+   font-family: boldest;
+   margin-top: 120px;
+   margin-bottom: 20px;
+}
+
+#viewerText h3 {
+   font-size: 26px;
+   color: var(--negativeThemeColor);
+   font-family: boldest;
+   display: block;
+   margin-top: 40px;
+   margin-bottom: 10px;
+}
+
+#viewerText h1 + h2,
+#viewerText h2 + h3 {
+   margin-top: 20px;
+}
+
+#viewerText h1,
+#viewerText h2,
+#viewerText h3,
+#viewerTitle {
+   text-shadow: 0px 0px 20px rgba(60, 40, 20, 0.2);
+   line-height: 120%;
+}
+
+@media (prefers-color-scheme: dark) {
+   #viewerText h1,
+   #viewerText h2,
+   #viewerText h3,
+   #viewerTitle {
+      text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+   }
+}
+
+#viewerText a {
+   color: var(--negativeThemeColor);
+   background-color: rgba(255, 255, 255, 0.5);
+   text-decoration: none;
+   border-radius: 10px;
+   padding: 3px;
+   padding-left: 12px;
+   padding-right: 12px;
+   box-sizing: border-box;
+   font-family: bold;
+   transition: 0.3s;
+   display: inline-block;
+   word-wrap: break-word;
+   overflow-wrap: break-word;
+   max-width: 100%;
+   border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+   #viewerText a {
+      color: var(--negativeThemeColor);
+      background-color: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+   }
+}
+
+#viewerText a::before {
+   content: "";
+   display: inline-block;
+   width: 15px;
+   height: 15px;
+   margin-right: 8px;
+   background-image: url("/assets/images/cursor.png");
+   filter: invert(var(--invertValue));
+   opacity: 0.5;
+   background-position: center center;
+   background-size: contain;
+   transition: 0.3s;
+}
+
+@media (pointer: fine) {
+   #viewerText a:hover {
+      background-color: var(--negativeThemeColor);
+      color: var(--themeColor);
+      border: 1px solid var(--negativeThemeColor);
+      transform: scale(1.03);
+   }
+
+   @media (prefers-color-scheme: dark) {
+      #viewerText a:hover {
+         color: var(--themeColor);
+         background-color: var(--negativeThemeColor);
+      }
+   }
+
+   #viewerText a:hover::before {
+      filter: invert(var(--negativeInvertValue));
+   }
+}
+
+#viewerText figcaption {
+   opacity: 0.3;
+   font-size: 70%;
+   display: block;
+   text-align: center;
+   margin-top: -8px;
+   font-style: italic;
+}
+
+#viewerText hr {
+   height: 5px;
+   width: 100%;
+   background-color: rgba(0, 0, 0, 0.07);
+   border: none;
+   border-radius: 10px;
+   display: block;
+   margin-top: 120px;
+   margin-bottom: 120px;
+}
+
+@media (prefers-color-scheme: dark) {
+   #viewerText hr {
+      background-color: rgba(255, 255, 255, 0.1);
+   }
+}
+
+#viewerText img {
+   border-radius: clamp(20px, 5vw, 30px);
+   display: inline-block;
+   width: 100%;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+   vertical-align: top;
+}
+
+@media (prefers-color-scheme: dark) {
+   #viewerText img {
+      box-shadow: none;
+   }
+}
+
+#viewerText li {
+   margin-top: 6px;
+   margin-bottom: 6px;
+}
+
+#viewerText ol {
+   counter-reset: myCounter;
+   list-style-type: none;
+}
+
+#viewerText ol li {
+   position: relative;
+   margin-left: 0px;
+}
+
+#viewerText ol > li::before {
+   counter-increment: myCounter;
+   content: counter(myCounter);
+   font-family: chewy;
+   font-size: 75%;
+   color: var(--negativeThemeColor);
+   background-color: rgba(255, 255, 255, 0.5);
+   position: absolute;
+   width: 22px;
+   height: 22px;
+   border-radius: 50px;
+   left: -29px;
+   top: 4px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   transition: 0.3s;
+}
+
+@media (prefers-color-scheme: dark) {
+   #viewerText ol > li::before {
+      background-color: rgba(255, 255, 255, 0.15);
+   }
+}
+
+@media screen and (max-width: 700px) {
+   #viewerText ul,
+   #viewerText ol {
+      padding-left: 25px;
+   }
+}
+
+#viewerText strong {
+   font-family: boldest;
+   color: var(--negativeThemeColor);
+}
+
+#viewerText em {
+   all: inherit;
+   padding: 0px;
+   margin: 0px;
+   display: inline;
+   font-style: italic;
+}
+
+#viewerText code {
+   background-color: rgba(255, 255, 255, 0.35);
+   border-radius: 10px;
+   padding: 3px 12px;
+   box-sizing: border-box;
+   display: inline;
+   font-family: code;
+   font-size: 85%;
+   border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+   #viewerText code {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+   }
+}
+
+#viewerText pre {
+   width: 100%;
+   margin: 0px;
+   padding: 20px;
+   background-color: rgba(255, 255, 255, 0.35);
+   box-sizing: border-box;
+   border-radius: 20px;
+   overflow-x: scroll;
+   margin-top: 20px;
+   margin-bottom: 40px;
+   border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+   #viewerText pre {
+      background-color: rgba(255, 255, 255, 0.1);
+      box-shadow: none;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+   }
+}
+
+#viewerText pre code {
+   background-color: transparent;
+   border: none;
+   font-family: inherit;
+   font-size: inherit;
+   display: inline-block;
+}
+
+#viewerText blockquote {
+   display: block;
+   margin: 10px;
+   margin-top: 30px;
+   margin-bottom: 50px;
+   padding: 30px;
+   box-sizing: border-box;
+   background-color: rgba(255, 255, 255, 0.35);
+   border-radius: 20px;
+   position: relative;
+   border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+   #viewerText blockquote {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+   }
+}
+
+#viewerText blockquote p {
+   margin: 0;
+   font-family: bold;
+   color: var(--negativeThemeColor);
+}
+
+#viewerText blockquote > :first-child {
+   margin-top: 0px;
+}
+
+#viewerText blockquote > :last-child {
+   margin-bottom: 0px;
+}
+
+#viewerText blockquote::before {
+   content: "";
+   background-image: url("/assets/images/quote.png");
+   background-size: contain;
+   width: 45px;
+   height: 45px;
+   position: absolute;
+   left: -15px;
+   top: -20px;
+   filter: invert(var(--invertValue));
+   opacity: 0.3;
+}
+
+#viewerText blockquote cite {
+   display: block;
+   margin-top: 10px;
+   opacity: 0.5;
+   font-size: 80%;
+   font-family: bold;
+   font-style: normal;
+}
+
+#viewerText blockquote cite::before {
+   content: "";
+   display: inline-block;
+   width: 15px;
+   height: 15px;
+   margin-right: 8px;
+   margin-bottom: -2px;
+   background-image: url("/assets/images/author.png");
+   filter: invert(var(--invertValue));
+   opacity: 0.5;
+   background-position: center center;
+   background-size: contain;
+}
+
+#viewerText input[type="checkbox"] {
+   -webkit-appearance: none;
+   appearance: none;
+   margin-right: 10px;
+   margin-bottom: -1px;
+   width: 16px;
+   height: 16px;
+   border: 2px solid var(--negativeThemeColor);
+   border-radius: 50px;
+   position: relative;
+   opacity: 0.2;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+}
+
+#viewerText input[type="checkbox"]:checked::before {
+   content: "";
+   position: absolute;
+   width: 70%;
+   height: 70%;
+   border-radius: 50px;
+   background-color: #4caf50;
+}
+
+#viewerText input[type="checkbox"]:checked {
+   opacity: 1;
+   border-color: #4caf50;
+}
+
+/*Table Styling*/
+#viewerText table {
+   max-width: 100%;
+   border-collapse: separate;
+   border-spacing: 0px;
+   background-color: rgba(255, 255, 255, 0.35);
+   border-radius: 20px;
+   display: inline-block;
+   overflow: hidden;
+   overflow-x: scroll;
+   border: 1px solid rgba(255, 255, 255, 0.3);
+   margin-top: 20px;
+   margin-bottom: 40px;
+   box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+   #viewerText table {
+      background-color: rgba(255, 255, 255, 0.1);
+      box-shadow: none;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+   }
+}
+
+#viewerText table thead th {
+   background-color: rgba(255, 255, 255, 0.4);
+   font-family: bold;
+}
+
+@media (prefers-color-scheme: dark) {
+   #viewerText table thead th {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--negativeThemeColor);
+   }
+}
+
+#viewerText table td {
+   font-size: 80%;
+}
+
+#viewerText table th,
+#viewerText table td {
+   text-align: left;
+   padding: 15px;
+   min-width: 30px;
+}
+
+#viewerText table tbody {
+   width: 100%;
+}
+
+#viewerText table tbody tr {
+   transition: 0.15s;
+}
+
+@media (pointer: fine) {
+   #viewerText table tbody tr:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+   }
+   @media (prefers-color-scheme: dark) {
+      #viewerText table tbody tr:hover {
+         background-color: rgba(255, 255, 255, 0.05);
+      }
+   }
+}

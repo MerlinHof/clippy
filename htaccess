@@ -1,0 +1,17 @@
+RewriteEngine On
+# Ensure that all traffic is redirected to HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+ErrorDocument 404 /utils/404.html
+ErrorDocument 403 /utils/404.html
+
+# Prevent directory listing
+Options -Indexes
+
+# The following rules block direct web access to all files within /userdata/ and its subdirectories.
+RewriteCond %{REQUEST_URI} ^/userdata/.*$
+RewriteRule ^.*$ - [F,L]
+
+# Weiterleiten aller Anfragen an /postimg/... an ein zentrales PHP-Skript
+RewriteRule ^postimg/([0-9]+)$ /postimg/?id=$1 [L,QSA]

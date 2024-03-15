@@ -1,0 +1,11 @@
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+Icon?
+
+.env
+.env.local
+
+userdata
+utils/env.php

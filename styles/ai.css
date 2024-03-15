@@ -1,0 +1,162 @@
+/* -------------------------------------------------------------------------------- */
+/* Ai-Stuff Styling */
+
+#aiButtonContainer {
+   display: block;
+   margin-top: 10px;
+   margin-bottom: 60px;
+}
+
+#aiSummaryButton,
+#aiFactCheckButton,
+#aiQuestionButton {
+   margin-top: 0px;
+   margin-bottom: 5px;
+}
+
+#credibilityScore {
+   display: inline-block;
+   padding: 15px 25px;
+   background-color: rgba(20, 200, 150);
+   border-radius: 100px;
+   color: white;
+   margin-bottom: 20px;
+   font-family: boldest;
+}
+
+#aiQuestionInput {
+   background-color: rgba(255, 255, 255, 0.5);
+   display: block;
+   width: 100%;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   padding: 20px;
+   box-sizing: border-box;
+   border-radius: 15px;
+   border: none;
+   outline: none;
+}
+
+@media (prefers-color-scheme: dark) {
+   #aiQuestionInput {
+      background-color: rgba(255, 255, 255, 0.1);
+   }
+}
+
+#aiFaqContainer {
+   margin-top: 400px;
+}
+
+#aiFaqTitleContainer {
+   display: flex;
+   flex-direction: column);
+   align-items: center;
+}
+
+#aiFaqIcon {
+   width: 35px;
+   height: 35px;
+   margin-right: 13px;
+}
+
+#aiFaqTitle {
+   font-size: 40px;
+   font-family: chewy;
+}
+
+.aiFaqElement {
+   background-color: rgba(255, 255, 255, 0.35);
+   border: 1px solid rgba(255, 255, 255, 0.3);
+   padding: 30px;
+   padding-top: 40px;
+   border-radius: 20px;
+   margin-top: 50px;
+   margin-bottom: 50px;
+   position: relative;
+}
+
+@media (prefers-color-scheme: dark) {
+   .aiFaqElement {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+   }
+}
+
+.aiFaqElementEmojis {
+   display: block;
+   font-size: 35px;
+   position: absolute;
+   letter-spacing: 10px;
+   left: 30px;
+   top: -15px;
+}
+
+.aiFaqElementQuestion {
+   font-family: boldest;
+   display: block;
+   margin-bottom: 10px;
+   font-size: 105%;
+}
+
+.aiFaqElementAnswer {
+   font-family: standard;
+   display: block;
+   font-size: 95%;
+   opacity: 0.6;
+}
+
+#aiFaqQuestionButton {
+   display: none;
+}
+
+#aiFaqQuestionClearButton {
+   display: none;
+}
+
+#credibilityWarningContainer {
+   display: none;
+   box-sizing: border-box;
+   padding: 30px;
+   border-radius: 20px;
+   background-color: rgba(220, 10, 90, 0.15);
+   border: 1px solid rgba(220, 10, 90, 0.1);
+   margin-top: -20px;
+   margin-bottom: 40px;
+}
+
+@media (prefers-color-scheme: dark) {
+   #credibilityWarningContainer {
+      background-color: rgba(220, 10, 90, 0.4);
+      border: 1px solid rgba(220, 10, 90, 0.2);
+   }
+}
+
+#credibilityWarningHeader {
+   display: flex;
+   align-items: center;
+}
+
+#credibilityWarningContainer img {
+   width: 20px;
+   height: 20px;
+   margin-bottom: 20px;
+   display: inline-block;
+   float: left;
+   margin: 0px;
+   margin-right: 15px;
+}
+
+#credibilityWarningTitle {
+   display: block;
+   font-size: 110%;
+   margin: 0px;
+   font-family: boldest;
+}
+
+#credibilityWarningText {
+   opacity: 0.7;
+   margin: 0px;
+   display: block;
+   margin-top: 15px;
+   font-family: standard;
+}
