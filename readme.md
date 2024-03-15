@@ -1,6 +1,6 @@
 # Welcome to Clippy - Your Markdown Document Sharing Platform
 
-Welcome to [Clippy](www.clippy.cc), the ultimate platform for sharing your Markdown documents with ease and sophistication. Designed with the modern user in mind, Clippy incorporates advanced features to enhance your document sharing experience.
+Welcome to [Clippy](https://www.clippy.cc), the ultimate platform for sharing your Markdown documents with ease and sophistication. Designed with the modern user in mind, Clippy incorporates advanced features to enhance your document sharing experience.
 
 ## Features
 
