@@ -217,7 +217,6 @@ class AiDataNotation {
          }
          obj[obj.length - 1][marker] = value;
       }
-      console.log(obj);
       return obj;
    }
 }
