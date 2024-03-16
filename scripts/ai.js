@@ -204,23 +204,10 @@ async function callLLM(action, message, suffix) {
 }
 
 class AiDataNotation {
-   // static parse(str) {
-   //    let obj = {};
-   //    const parts = str.split(/\[(.+?)\]:/);
-   //    for (let i = 1; i < parts.length; i += 2) {
-   //       const marker = parts[i].trim();
-   //       const value = parts[i + 1].trim();
-
-   //       if (!Array.isArray(obj[marker])) {
-   //          obj[marker] = [];
-   //       }
-   //       obj[marker].push(value);
-   //    }
-   //    return obj;
-   // }
    static parse(str) {
       let obj = [{}];
-      const parts = str.split(/\[(.+?)\]:/);
+      str = str.replaceAll("]:", "]");
+      const parts = str.split(/\[(.+?)\]/);
       for (let i = 1; i < parts.length; i += 2) {
          const marker = parts[i].trim();
          const value = parts[i + 1].trim();
@@ -230,6 +217,7 @@ class AiDataNotation {
          }
          obj[obj.length - 1][marker] = value;
       }
+      console.log(obj);
       return obj;
    }
 }
