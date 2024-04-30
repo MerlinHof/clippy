@@ -27,7 +27,7 @@
    color: var(--negativeThemeColor);
    font-family: boldest;
    display: block;
-   margin-top: 40px;
+   margin-top: 50px;
    margin-bottom: 10px;
 }
 
@@ -118,7 +118,7 @@
    font-size: 70%;
    display: block;
    text-align: center;
-   margin-top: -8px;
+   margin-top: -18px;
    font-style: italic;
 }
 
@@ -129,8 +129,8 @@
    border: none;
    border-radius: 10px;
    display: block;
-   margin-top: 120px;
-   margin-bottom: 120px;
+   margin-top: 270px;
+   margin-bottom: 270px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -265,8 +265,8 @@
 #viewerText blockquote {
    display: block;
    margin: 10px;
-   margin-top: 90px;
-   margin-bottom: 90px;
+   margin-top: 95px;
+   margin-bottom: 95px;
    padding: 35px 40px;
    box-sizing: border-box;
    border-radius: 20px;
@@ -287,9 +287,8 @@
 }
 
 @media (prefers-color-scheme: dark) {
-   #viewerText blockquote {
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+   #viewerText blockquote::after {
+      background-color: rgba(220, 240, 255, 0.15);
    }
 }
 
