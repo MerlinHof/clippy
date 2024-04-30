@@ -62,12 +62,10 @@ export async function startBackgroundAnimation() {
 
    const width = container.getWidth();
    const height = container.getHeight();
-   const colors = [new Color(0, 60, 200), new Color(0, 200, 120), new Color(170, 0, 220), new Color(30, 140, 95)];
 
    for (let i = 0; i < 12; i++) {
       DOM.create("div")
          .setStyle({
-            backgroundColor: colors[Math.floor(Math.random() * colors.length)].toString(),
             width: "240px",
             height: "240px",
             position: "inherit",
@@ -76,16 +74,13 @@ export async function startBackgroundAnimation() {
          .appendTo(container)
          .onTransitionEnd(
             (elem) => {
+               const randomColor = `rgb(${80 + Math.random() * 175}, ${80 + Math.random() * 175}, ${80 + Math.random() * 175})`;
                elem.setStyle({
                   transition: `all ${3 + Math.random() * 5}s linear`,
+                  backgroundColor: randomColor,
                });
                let newX = Math.random() * (width - 240);
                let newY = Math.random() * (height - 240);
-               if (Math.random() < 0.5) {
-                  newX = Math.random() < 0.5 ? 0 : width - 240;
-               } else {
-                  newY = Math.random() < 0.5 ? 0 : height - 240;
-               }
                elem.setStyle({
                   left: newX + "px",
                   top: newY + "px",
@@ -94,18 +89,6 @@ export async function startBackgroundAnimation() {
             true,
             true,
          );
-   }
-}
-
-class Color {
-   constructor(r, g, b, a = 1) {
-      this.r = r;
-      this.g = g;
-      this.b = b;
-      this.a = a;
-   }
-   toString() {
-      return `rgba(${this.r}, ${this.g}, ${this.b}, ${this.a})`;
    }
 }
 

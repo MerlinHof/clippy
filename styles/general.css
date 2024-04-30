@@ -32,6 +32,12 @@
 }
 
 @font-face {
+   font-family: "patrickhand";
+   src: url("/assets/fonts/patrickhand.ttf");
+   font-display: swap;
+}
+
+@font-face {
    font-family: "code";
    src: url("/assets/fonts/chivo_mono.ttf");
    font-display: swap;
