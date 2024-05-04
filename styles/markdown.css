@@ -347,14 +347,16 @@
 #viewerText input[type="checkbox"] {
    -webkit-appearance: none;
    appearance: none;
-   margin-right: 10px;
+   margin-right: 8px;
    margin-bottom: -1px;
-   width: 16px;
-   height: 16px;
-   border: 2px solid var(--negativeThemeColor);
-   border-radius: 50px;
+   margin-left: -30px;
+   width: 18px;
+   height: 18px;
+   border: 2px solid rgba(128, 128, 128, 0.3);
+   background-color: var(--themeColor);
+   border-radius: 5px;
    position: relative;
-   opacity: 0.2;
+   opacity: 1;
    display: inline-flex;
    align-items: center;
    justify-content: center;
@@ -363,15 +365,22 @@
 #viewerText input[type="checkbox"]:checked::before {
    content: "";
    position: absolute;
-   width: 70%;
+   /* width: 70%;
    height: 70%;
    border-radius: 50px;
-   background-color: #4caf50;
+   background-color: #4caf50; */
+   width: 60%;
+   height: 25%;
+   border-left: 3px solid var(--themeColor);
+   border-bottom: 3px solid var(--themeColor);
+   transform: rotate(-50deg);
+   margin-top: -2px;
 }
 
 #viewerText input[type="checkbox"]:checked {
    opacity: 1;
    border-color: #4caf50;
+   background-color: #4caf50;
 }
 
 /*Table Styling*/
