@@ -254,3 +254,19 @@ body {
       transform: rotate(360deg);
    }
 }
+
+sub {
+   vertical-align: middle;
+   display: inline-block;
+   margin-bottom: -10px;
+   font-size: 70%;
+   line-height: 0;
+}
+
+sup {
+   vertical-align: middle;
+   display: inline-block;
+   margin-top: -10px;
+   font-size: 70%;
+   line-height: 0;
+}
