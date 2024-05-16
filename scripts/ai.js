@@ -118,9 +118,9 @@ export async function showQuestion(clip) {
          const questions = JSON.parse(localStorage.getItem(cookieName) || "[]");
          if (!questions.some((q) => q.question == question)) {
             questions.push({
-               Q: betterQuestion,
-               A: answer,
-               E: emojis,
+               QU: betterQuestion,
+               ANS: answer,
+               EMO: emojis,
             });
             localStorage.setItem(cookieName, JSON.stringify(questions));
             generateFaq(clip);

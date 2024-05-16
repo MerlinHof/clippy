@@ -88,7 +88,7 @@ async function showViewer() {
    setTimeout(() => {
       Ai.generateFaq(clip);
       Ai.showFactCheck(clip, false);
-      Ai.generateQuiz(clip);
+      //Ai.generateQuiz(clip);
    }, 500);
    modifyHtml();
 
