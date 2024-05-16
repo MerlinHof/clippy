@@ -85,8 +85,11 @@ async function showViewer() {
    DOM.select("viewerText").setContent(parsedText);
 
    hljs.highlightAll();
-   Ai.generateFaq(clip);
-   Ai.showFactCheck(clip, false);
+   setTimeout(() => {
+      Ai.generateFaq(clip);
+      Ai.showFactCheck(clip, false);
+      Ai.generateQuiz(clip);
+   }, 500);
    modifyHtml();
 
    setTimeout(() => {

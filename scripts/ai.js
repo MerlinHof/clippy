@@ -35,8 +35,8 @@ export async function showFactCheck(clip, visually = true) {
       return;
    }
    const obj = AiDataNotation.parse(answer);
-   const score = Math.round(parseFloat(obj[0]["C"], 10));
-   const analysis = obj[0]["A"];
+   const score = Math.round(parseFloat(obj[0]["CRED"], 10));
+   const analysis = obj[0]["ANA"];
 
    const answerDialog = new Dialog();
    answerDialog.withSelectButton = false;
@@ -103,9 +103,9 @@ export async function showQuestion(clip) {
             return;
          }
          const obj = AiDataNotation.parse(res);
-         const emojis = obj[0]["E"] || "";
-         const betterQuestion = obj[0]["Q"] || "";
-         const answer = obj[0]["A"] || "";
+         const emojis = obj[0]["EMO"] || "";
+         const betterQuestion = obj[0]["QU"] || "";
+         const answer = obj[0]["ANS"] || "";
 
          const answerDialog = new Dialog();
          answerDialog.withSelectButton = false;
@@ -161,19 +161,33 @@ export async function generateFaq(clip) {
    for (let i = 0; i < faq.length; i++) {
       const faqElement = faq[i];
       const faqDiv = DOM.create("div .aiFaqElement");
-      faqDiv.append(DOM.create("t .aiFaqElementEmojis").setText(faqElement["E"] || ""));
-      faqDiv.append(DOM.create("t .aiFaqElementQuestion").setText(faqElement["Q"] || ""));
-      faqDiv.append(DOM.create("t .aiFaqElementAnswer").setText(faqElement["A"] || ""));
+      faqDiv.append(DOM.create("t .aiFaqElementEmojis").setText(faqElement["EMO"] || ""));
+      faqDiv.append(DOM.create("t .aiFaqElementQuestion").setText(faqElement["QU"] || ""));
+      faqDiv.append(DOM.create("t .aiFaqElementAnswer").setText(faqElement["ANS"] || ""));
       container.append(faqDiv);
    }
+}
+
+// Loads and parses the Ai Quiz
+export async function generateQuiz(clip) {
+   let answer = await callLLM("quiz", `${clip.title}: ${clip.text}`, "");
+   if (!answer) {
+      DOM.select("aiFaqElementContainer").setText("Limit reached, try again tomorrow");
+      return;
+   }
+
+   let quiz = AiDataNotation.parse(answer);
+   console.log(answer);
+   console.log(quiz);
 }
 
 // Calls the Backend which makes the actual API Call to OpenAi / Anthropic
 async function callLLM(action, message, suffix) {
    const language = navigator.language || navigator.userLanguage;
-   const cookieName = `aicache_${await Security.hash(action + language + message + suffix)}`;
+   const cookieName = `aicacheV2_${await Security.hash(action + language + message + suffix)}`;
    const cachedData = localStorage.getItem(cookieName);
    if (cachedData?.length > 10) {
+      console.log(cachedData);
       return cachedData;
    }
 
@@ -200,6 +214,7 @@ async function callLLM(action, message, suffix) {
    }
    if (data.error) return false;
    localStorage.setItem(cookieName, data.answer);
+   console.log(data.answer);
    return data.answer;
 }
 
