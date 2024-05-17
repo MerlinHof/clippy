@@ -48,7 +48,6 @@ setInterval(() => {
 // Parses URL parameters, Fetches Clip, and determines UI mode (viewer or control panel).
 const urlParameters = Object.fromEntries(new URLSearchParams(window.location.search));
 load(urlParameters);
-
 async function load(urlParameters) {
    if (urlParameters.id?.length > 4) {
       DOM.select("loadingContainer").setStyle({ display: "block" });
@@ -111,6 +110,34 @@ async function showViewer() {
 }
 
 function modifyHtml() {
+   // Intersection Observer für Lazy Loading von iframes initialisieren
+   const observer = new IntersectionObserver(
+      (entries, observer) => {
+         entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+               const target = entry.target;
+               target.setAttribute("src", target.getAttribute("data-src"));
+               target.removeAttribute("data-src");
+               target.onload = () => {
+                  target.style.opacity = "1";
+                  target.style.backgroundColor = "transparent";
+               };
+               observer.unobserve(target);
+            }
+         });
+      },
+      { threshold: 0.1 },
+   );
+
+   // Alle iframes Lazy Loaden
+   document.querySelectorAll("iframe").forEach((iframe) => {
+      if (iframe.hasAttribute("src")) {
+         iframe.setAttribute("data-src", iframe.getAttribute("src"));
+         iframe.removeAttribute("src");
+         observer.observe(iframe);
+      }
+   });
+
    // Image ALT to Caption
    DOM.select("#viewerText img").forEvery((image) => {
       const caption = DOM.create("figcaption").setText(image.alt);

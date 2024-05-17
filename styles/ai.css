@@ -105,6 +105,35 @@
    opacity: 0.6;
 }
 
+#aiFaqButtonContainer {
+   margin-top: 100px;
+}
+
+.circleButton {
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   color: rgba(0, 0, 0, 0.3);
+   font-size: 80%;
+   margin: 0px 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+   .circleButton {
+      color: rgba(255, 255, 255, 0.3);
+   }
+}
+
+.circleButtonImage {
+   width: 20px;
+   height: 20px;
+   padding: 20px;
+   border: 2px solid rgba(0, 0, 0, 0.1);
+   filter: invert(var(--invertValue));
+   border-radius: 100px;
+   margin-bottom: 10px;
+}
+
 #aiFaqQuestionButton {
    display: none;
 }

@@ -95,14 +95,24 @@ createCSRF();
          <div id="aiFaqElementContainer">
             <img src="/assets/images/loading.png" class="loadingImage" style="width: 40px; height: 40px;" />
          </div>
-         <div id="aiFaqQuestionButton" class="smallButton">
+         <div id="aiFaqButtonContainer">
+            <div id="aiFaqQuestionButton" class="circleButton">
+               <img src="/assets/images/add.png" class="circleButtonImage">
+               Ask
+            </div>
+            <div id="aiFaqQuestionClearButton" class="circleButton">
+               <img src="/assets/images/trash2.png" class="circleButtonImage">
+               Clear
+             </div>
+         </div>
+         <!-- <div id="aiFaqQuestionButton" class="smallButton">
             <img src="/assets/images/add.png" class="buttonImage">
             Ask New Question
          </div>
           <div id="aiFaqQuestionClearButton" class="smallButton">
              <img src="/assets/images/trash2.png" class="buttonImage">
              Clear History
-          </div>
+          </div> -->
       </div>
    </div>
 

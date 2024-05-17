@@ -56,8 +56,8 @@ export async function startBackgroundAnimation() {
 
    await new Promise((resolve) => setTimeout(resolve, 50));
    container.setStyle({
-      opacity: 0.25,
-      filter: "blur(110px)",
+      opacity: 0.3,
+      filter: "blur(100px)",
    });
 
    const width = container.getWidth();
@@ -74,7 +74,7 @@ export async function startBackgroundAnimation() {
          .appendTo(container)
          .onTransitionEnd(
             (elem) => {
-               const randomColor = `rgb(${80 + Math.random() * 175}, ${80 + Math.random() * 175}, ${80 + Math.random() * 175})`;
+               const randomColor = `rgb(${50 + Math.random() * 180}, ${50 + Math.random() * 180}, ${50 + Math.random() * 180})`;
                elem.setStyle({
                   transition: `all ${3 + Math.random() * 5}s linear`,
                   backgroundColor: randomColor,

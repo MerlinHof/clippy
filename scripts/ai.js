@@ -177,8 +177,6 @@ export async function generateQuiz(clip) {
    }
 
    let quiz = AiDataNotation.parse(answer);
-   console.log(answer);
-   console.log(quiz);
 }
 
 // Calls the Backend which makes the actual API Call to OpenAi / Anthropic
@@ -187,7 +185,6 @@ async function callLLM(action, message, suffix) {
    const cookieName = `aicacheV2_${await Security.hash(action + language + message + suffix)}`;
    const cachedData = localStorage.getItem(cookieName);
    if (cachedData?.length > 10) {
-      console.log(cachedData);
       return cachedData;
    }
 
@@ -214,7 +211,6 @@ async function callLLM(action, message, suffix) {
    }
    if (data.error) return false;
    localStorage.setItem(cookieName, data.answer);
-   console.log(data.answer);
    return data.answer;
 }
 
