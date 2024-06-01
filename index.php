@@ -63,16 +63,16 @@ createCSRF();
 
       <div id="aiButtonContainer">
          <div id="aiSummaryButton" class="smallButton">
-            <img src="/assets/images/star.png" class="buttonImage">
-            Ai Summary
+            <img src="/assets/images/star.png" id="aiSummaryButtonImage" class="buttonImage">
+            Summary
          </div>
          <div id="aiFactCheckButton" class="smallButton">
-            <img src="/assets/images/factcheck.png" class="buttonImage">
-            Fact Check
+            <img src="/assets/images/check.png" id="aiFactCheckButtonImage" class="buttonImage">
+            Factcheck
          </div>
          <div id="aiQuestionButton" class="smallButton">
-            <img src="/assets/images/question.png" class="buttonImage">
-            Questions
+            <img src="/assets/images/chat.png" class="buttonImage">
+            Answers
          </div>
       </div>
 
@@ -87,32 +87,20 @@ createCSRF();
 
       <t id="viewerText"></t>
 
+      <!-- Ai FAQ -->
       <div id="aiFaqContainer">
          <div id="aiFaqTitleContainer">
-            <img src="/assets/images/magic.png" id="aiFaqIcon">
-            <h1 id="aiFaqTitle">Ai Questions & Answers</h1>
+             <img src="/assets/images/magic.png" id="aiFaqIcon1">
+             <img src="/assets/images/magic.png" id="aiFaqIcon2">
+             <img src="/assets/images/magic.png" id="aiFaqIcon3">
          </div>
          <div id="aiFaqElementContainer">
             <img src="/assets/images/loading.png" class="loadingImage" style="width: 40px; height: 40px;" />
          </div>
          <div id="aiFaqButtonContainer">
-            <div id="aiFaqQuestionButton" class="circleButton">
-               <img src="/assets/images/add.png" class="circleButtonImage">
-               Ask
-            </div>
-            <div id="aiFaqQuestionClearButton" class="circleButton">
-               <img src="/assets/images/trash2.png" class="circleButtonImage">
-               Clear
-             </div>
+             <div id="aiFaqQuestionButton" class="button"><img src="/assets/images/add.png" class="buttonImage">Ask Question</div>
+             <div id="aiFaqQuestionClearButton" class="button secondaryButton"><img src="/assets/images/trash2.png" class="buttonImage">Clear History</div>
          </div>
-         <!-- <div id="aiFaqQuestionButton" class="smallButton">
-            <img src="/assets/images/add.png" class="buttonImage">
-            Ask New Question
-         </div>
-          <div id="aiFaqQuestionClearButton" class="smallButton">
-             <img src="/assets/images/trash2.png" class="buttonImage">
-             Clear History
-          </div> -->
       </div>
    </div>
 
