@@ -2,195 +2,203 @@
 /* Ai-Stuff Styling */
 
 #aiButtonContainer {
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 60px;
+   display: block;
+   margin-top: 10px;
+   margin-bottom: 60px;
 }
 
 #aiSummaryButton,
 #aiFactCheckButton,
 #aiQuestionButton {
-    margin-top: 0px;
-    margin-bottom: 5px;
+   margin-top: 0px;
+   margin-bottom: 5px;
 }
 
 #credibilityScore {
-    display: inline-block;
-    padding: 15px 25px;
-    background-color: rgba(20, 200, 150);
-    border-radius: 100px;
-    margin-bottom: 20px;
-    font-family: boldest;
+   display: inline-block;
+   padding: 20px 25px;
+   background-color: rgba(20, 200, 150);
+   border-radius: 20px;
+   margin-bottom: 20px;
+   font-family: boldest;
+   margin-top: 20px;
+   margin-bottom: 0px;
 }
 
 #aiQuestionInput {
-    background-color: rgba(255, 255, 255, 0.5);
-    display: block;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 20px;
-    box-sizing: border-box;
-    border-radius: 15px;
-    border: none;
-    outline: none;
+   background-color: rgba(255, 255, 255, 0.5);
+   display: block;
+   width: 100%;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   padding: 20px;
+   box-sizing: border-box;
+   border-radius: 15px;
+   border: none;
+   outline: none;
 }
 
 @media (prefers-color-scheme: dark) {
-    #aiQuestionInput {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
+   #aiQuestionInput {
+      background-color: rgba(255, 255, 255, 0.1);
+   }
 }
 
 #aiFaqContainer {
-    margin-top: 400px;
+   margin-top: 50px;
 }
 
 #aiFaqTitleContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 150px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-bottom: 150px;
 }
 
 #aiFaqIcon1 {
-    width: 60px;
-    height: 60px;
-    animation: magicPulse 2s infinite ease-in-out;
-    animation-delay: 0ms;
-    margin-right: 40px;
-    opacity: 0.6;
+   width: 60px;
+   height: 60px;
+   animation: magicPulse 2s infinite ease-in-out;
+   animation-delay: 0ms;
+   margin-right: 40px;
+   opacity: 0.6;
 }
 
 #aiFaqIcon2 {
-    width: 124px;
-    height: 124px;
-    animation: magicPulse 2s infinite ease-in-out;
-    animation-delay: 300ms;
+   width: 124px;
+   height: 124px;
+   animation: magicPulse 2s infinite ease-in-out;
+   animation-delay: 300ms;
 }
 
 #aiFaqIcon3 {
-    width: 60px;
-    height: 60px;
-    animation: magicPulse 2s infinite ease-in-out;
-    animation-delay: 600ms;
-    margin-left: 40px;
-    opacity: 0.6;
+   width: 60px;
+   height: 60px;
+   animation: magicPulse 2s infinite ease-in-out;
+   animation-delay: 600ms;
+   margin-left: 40px;
+   opacity: 0.6;
 }
 
 @keyframes magicPulse {
-    0% {
-        transform: rotate(-5deg) scale(1);
-    }
-    50% {
-        transform: rotate(5deg) scale(1.2);
-    }
-    100% {
-        transform: rotate(-5deg) scale(1);
-    }
+   0% {
+      transform: rotate(-5deg) scale(1);
+   }
+   50% {
+      transform: rotate(5deg) scale(1.2);
+   }
+   100% {
+      transform: rotate(-5deg) scale(1);
+   }
 }
 
 .aiFaqElement {
-    margin-top: 80px;
-    margin-bottom: 100px;
+   margin-top: 80px;
+   margin-bottom: 100px;
 }
 
 .aiFaqElementEmojis {
-    display: block;
-    font-size: 35px;
-    letter-spacing: 10px;
-    margin-left: 30px;
-    top: -35px;
+   display: block;
+   font-size: 35px;
+   letter-spacing: 10px;
+   margin-left: 30px;
+   top: -35px;
 }
 
 .aiFaqElementQuestion {
-    font-family: boldest;
-    display: block;
-    margin-bottom: 10px;
-    font-size: 110%;
-    padding: 20px 30px;
-    border-radius: 20px;
-    z-index: 10;
+   font-family: boldest;
+   display: block;
+   margin-bottom: 10px;
+   font-size: 110%;
+   padding: 20px 30px;
+   border-radius: 20px;
+   z-index: 10;
 }
 
 .aiFaqElementAnswer {
-    font-family: standard;
-    display: block;
-    font-size: 95%;
-    color: rgba(0, 0, 0, 0.5);
-    background-color: rgba(255, 255, 255, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.03);
-    padding: 20px 30px;
-    border-radius: 20px;
-    z-index: 5;
+   font-family: standard;
+   display: block;
+   font-size: 95%;
+   line-height: 120%;
+   color: rgba(0, 0, 0, 0.5);
+   background-color: rgba(255, 255, 255, 0.5);
+   border: 1px solid rgba(255, 255, 255, 0.5);
+   box-shadow: 0px 0px 80px rgba(0, 0, 0, 0.05);
+   padding: 25px 30px;
+   border-radius: 20px;
+   z-index: 5;
 }
 
 @media (prefers-color-scheme: dark) {
-    .aiFaqElementAnswer {
-        background-color: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        color: rgba(255, 255, 255, 0.5);
-        box-shadow: none;
-    }
+   .aiFaqElementAnswer {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid transparent;
+      color: rgba(255, 255, 255, 0.6);
+      box-shadow: none;
+   }
 }
 
 #aiFaqButtonContainer {
-    margin-top: 100px;
+   margin-top: 100px;
 }
 
 #aiFaqQuestionButton {
-    display: none;
+   display: none;
 }
 
 #aiFaqQuestionClearButton {
-    display: none;
+   display: none;
 }
 
 #credibilityWarningContainer {
-    display: none;
-    box-sizing: border-box;
-    padding: 30px;
-    border-radius: 20px;
-    background-color: rgba(220, 10, 90, 0.15);
-    border: 1px solid rgba(220, 10, 90, 0.1);
-    margin-top: -20px;
-    margin-bottom: 40px;
+   display: none;
+   box-sizing: border-box;
+   padding: 30px;
+   border-radius: 20px;
+   background-color: rgba(220, 10, 90, 0.15);
+   border: 1px solid rgba(220, 10, 90, 0.1);
+   margin-top: -20px;
+   margin-bottom: 40px;
 }
 
 @media (prefers-color-scheme: dark) {
-    #credibilityWarningContainer {
-        background-color: rgba(220, 10, 90, 0.4);
-        border: 1px solid rgba(220, 10, 90, 0.2);
-    }
+   #credibilityWarningContainer {
+      background-color: rgba(220, 10, 90, 0.4);
+      border: 1px solid rgba(220, 10, 90, 0.2);
+   }
 }
 
 #credibilityWarningHeader {
-    display: flex;
-    align-items: center;
+   display: flex;
+   align-items: center;
 }
 
 #credibilityWarningContainer img {
-    width: 20px;
-    height: 20px;
-    margin-bottom: 20px;
-    display: inline-block;
-    float: left;
-    margin: 0px;
-    margin-right: 15px;
+   width: 20px;
+   height: 20px;
+   margin-bottom: 20px;
+   display: inline-block;
+   float: left;
+   margin: 0px;
+   margin-right: 15px;
 }
 
 #credibilityWarningTitle {
-    display: block;
-    font-size: 110%;
-    margin: 0px;
-    font-family: boldest;
+   display: block;
+   font-size: 110%;
+   margin: 0px;
+   font-family: boldest;
 }
 
 #credibilityWarningText {
-    opacity: 0.7;
-    margin: 0px;
-    display: block;
-    margin-top: 15px;
-    font-family: standard;
+   opacity: 0.7;
+   margin: 0px;
+   display: block;
+   margin-top: 15px;
+   font-family: standard;
+}
+
+#aiTitleButton {
+   margin-top: -40px;
+   margin-bottom: 10px;
 }

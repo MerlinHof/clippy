@@ -12,6 +12,7 @@
    backdrop-filter: blur(35px);
    z-index: 5;
    display: flex;
+   flex-direction: column;
    align-items: center;
    justify-content: center;
    opacity: 0;
@@ -75,6 +76,9 @@
 
 .dialogSelectButton {
    margin-right: 10px;
+   margin-bottom: 0px;
+   margin-top: 30px;
+   z-index: 5;
 }
 
 .dialogSelectButton::before {
@@ -93,29 +97,48 @@
 }
 
 .dialogCloseButton {
-   background-color: transparent;
-   border: 2px solid rgba(0, 0, 0, 0.1);
-   color: var(--negativeThemeColor);
+   padding: 20px;
+   border-radius: 50px;
+   background-color: rgba(255, 255, 255, 0.8);
+   -webkit-backdrop-filter: blur(15px);
+   backdrop-filter: blur(15px);
+   margin-bottom: -35px;
+   z-index: 5;
+   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+   transition: 0.3s;
 }
 
 @media (prefers-color-scheme: dark) {
    .dialogCloseButton {
-      background-color: transparent;
-      border: 2px solid rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.2);
+      box-shadow: none;
    }
 }
 
-.dialogCloseButton::before {
-   content: "";
-   display: inline-block;
-   width: 12px;
-   height: 12px;
-   margin-top: -5px;
-   margin-left: -5px;
-   margin-right: 13px;
-   background-image: url("/assets/images/delete.png");
-   background-size: contain;
-   background-repeat: no-repeat;
-   vertical-align: middle;
+.dialogCloseButtonImage {
+   width: 20px;
+   height: 20px;
+   opacity: 0.3;
+   transition: 0.3s;
    filter: invert(var(--invertValue));
+}
+
+@media (pointer: fine) {
+   .dialogCloseButton:hover {
+      background-color: rgba(255, 255, 255, 1);
+      box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+      transform: translateY(-4px) scale(1.1);
+   }
+   .dialogCloseButton:hover ~ .dialog {
+      opacity: 0.5;
+      scale: 0.98;
+   }
+   .dialogCloseButton:hover .dialogCloseButtonImage {
+      opacity: 1;
+   }
+   @media (prefers-color-scheme: dark) {
+      .dialogCloseButton:hover .dialogCloseButtonImage {
+         filter: invert(var(--negativeInvertValue));
+      }
+   }
 }

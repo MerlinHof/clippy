@@ -21,7 +21,8 @@ export default class Dialog {
       this.dialogTitle = DOM.create("t .dialogTitle");
       this.dialogContentContainer = DOM.create("div .dialogContentContainer");
       this.dialogSelectButton = DOM.create("button .button .dialogSelectButton [type=button]");
-      this.dialogCloseButton = DOM.create("button .button .dialogCloseButton [type=button]").setText("Close");
+      this.dialogCloseButtonImage = DOM.create("img .dialogCloseButtonImage [src=/assets/images/delete.png]");
+      this.dialogCloseButton = DOM.create("div .dialogCloseButton").append(this.dialogCloseButtonImage);
 
       switch (preset) {
          case "loading":
@@ -41,13 +42,14 @@ export default class Dialog {
             this.dialog.append(this.dialogTitle);
             this.dialog.append(this.dialogContentContainer);
             this.dialog.append(this.dialogSelectButton);
-            this.dialog.append(this.dialogCloseButton);
+            this.dialogContainer.append(this.dialogCloseButton);
             break;
       }
       this.dialogContainer.append(this.dialog);
 
-      this.dialogSelectButton.onClick(() => {
+      this.dialogSelectButton.onClick((event) => {
          this.selectButtonClicked();
+         event.stopPropagation();
       });
       this.dialogCloseButton.onClick(() => {
          this.close();
@@ -66,7 +68,7 @@ export default class Dialog {
          this.dialogContentContainer.append(this.content);
       }
       this.dialogSelectButton.setText(this.selectButtonText);
-      this.dialogCloseButton.setText(this.closeButtonText);
+      // this.dialogCloseButton.setText(this.closeButtonText);
       this.dialogSelectButton.setStyle({ display: this.withSelectButton ? "inline-block" : "none" });
       this.dialogCloseButton.setStyle({ display: this.withCloseButton ? "inline-block" : "none" });
       this.dialogContainer.onClick(this.closeOnOutsideClick ? () => this.close() : () => {});

@@ -37,6 +37,10 @@ createCSRF();
       <div id="textareatitleScrollContainer">
          <input class="textarea" id="textareatitle" type="text" placeholder="Title" />
       </div>
+      <div class="smallButton" id="aiTitleButton">
+         <img class="buttonImage" id="aiTitleButtonImage" src="/assets/images/star.png">
+         Generate Title
+      </div>
       <textarea class="textarea" id="textareatext"></textarea>
 
       <div id="buttonContainer">
@@ -88,6 +92,7 @@ createCSRF();
       <t id="viewerText"></t>
 
       <!-- Ai FAQ -->
+      <hr>
       <div id="aiFaqContainer">
          <div id="aiFaqTitleContainer">
              <img src="/assets/images/magic.png" id="aiFaqIcon1">

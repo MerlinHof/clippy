@@ -1,39 +1,39 @@
 #viewerContainer {
-    min-height: 100vh;
-    width: 100vw;
-    max-width: 850px;
-    padding: 15px;
-    padding-top: 150px;
-    padding-bottom: 150px;
-    box-sizing: border-box;
-    display: block;
-    word-wrap: break-word;
-    hyphens: inline-block;
-    z-index: 2;
-    transition: 1.5s;
-    opacity: 0;
-    display: none;
+   min-height: 100vh;
+   width: 100vw;
+   max-width: 850px;
+   padding: 15px;
+   padding-top: 150px;
+   padding-bottom: 150px;
+   box-sizing: border-box;
+   display: block;
+   word-wrap: break-word;
+   hyphens: inline-block;
+   z-index: 2;
+   transition: 1.5s;
+   opacity: 0;
+   display: none;
 }
 
 #viewerTitle {
-    color: var(--negativeThemeColor);
-    font-size: clamp(30px, 12vw, 65px);
-    display: inline-block;
-    word-break: break-word;
-    font-family: chewy;
-    margin-bottom: 20px;
+   color: var(--negativeThemeColor);
+   font-size: clamp(30px, 12vw, 65px);
+   display: inline-block;
+   word-break: break-word;
+   font-family: chewy;
+   margin-bottom: 20px;
 }
 
 #viewerText {
-    color: var(--textColor);
+   color: var(--textColor);
 }
 
 #viewerText * {
-    font-weight: normal;
-    font-family: standard;
-    line-height: 142%;
+   font-weight: normal;
+   font-family: standard;
+   line-height: 142%;
 }
 
 #viewerText > :first-child {
-    margin-top: 0;
+   margin-top: 0;
 }
