@@ -76,9 +76,10 @@ async function showViewer() {
    });
    marked.use({ async: true });
    const parsedText = await marked.parse(clip.text);
+   const sanitizedHtml = DOMPurify.sanitize(parsedText);
    document.title = clip.title;
    DOM.select("viewerTitle").setText(clip.title);
-   DOM.select("viewerText").setContent(parsedText);
+   DOM.select("viewerText").setContent(sanitizedHtml);
 
    hljs.highlightAll();
    modifyHtml();

@@ -8,10 +8,11 @@ createCSRF();
 <html lang="en">
 
 <head>
-   <script type="module" src="/scripts/main.js?v=43" defer="defer"></script>
+   <script type="module" src="/scripts/main.js?v=44" defer="defer"></script>
    <script type="text/javascript" src="/scripts/libs/marked.min.js"></script>
    <script type="text/javascript" src="/scripts/libs/highlight.min.js"></script>
-   <link rel="stylesheet" href="/styles/index.css?v=43">
+   <script type="text/javascript" src="/scripts/libs/dompurify.min.js"></script>
+   <link rel="stylesheet" href="/styles/index.css?v=44">
    <link rel="icon" href="assets/images/logo.png">
    <title>Clippy - Your Markdown Document Sharing Platform</title>
    <meta charset="utf-8" />
