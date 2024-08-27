@@ -7,11 +7,30 @@
    margin-bottom: 60px;
 }
 
-#aiSummaryButton,
-#aiFactCheckButton,
-#aiQuestionButton {
+.aiButton {
    margin-top: 0px;
    margin-bottom: 5px;
+   color: white;
+   /* background-image: linear-gradient(135deg, rgba(102, 64, 186, 1), rgba(203, 63, 185, 1)); */
+   background-image: linear-gradient(45deg, rgba(130, 64, 186, 1), rgba(233, 63, 185, 1));
+   border: none;
+}
+
+.aiButton .buttonImage {
+   filter: invert(1);
+}
+
+.aiButton:hover {
+   border: none;
+   color: white;
+}
+.aiButton:hover .buttonImage {
+   filter: invert(1);
+}
+
+#shareButton,
+#editButton {
+   margin-top: 0px;
 }
 
 #credibilityScore {
@@ -23,25 +42,6 @@
    font-family: boldest;
    margin-top: 20px;
    margin-bottom: 0px;
-}
-
-#aiQuestionInput {
-   background-color: rgba(255, 255, 255, 0.5);
-   display: block;
-   width: 100%;
-   margin-top: 10px;
-   margin-bottom: 10px;
-   padding: 20px;
-   box-sizing: border-box;
-   border-radius: 15px;
-   border: none;
-   outline: none;
-}
-
-@media (prefers-color-scheme: dark) {
-   #aiQuestionInput {
-      background-color: rgba(255, 255, 255, 0.1);
-   }
 }
 
 #aiFaqContainer {
@@ -199,6 +199,6 @@
 }
 
 #aiTitleButton {
-   margin-top: -40px;
-   margin-bottom: 10px;
+   margin-top: -30px;
+   margin-bottom: 20px;
 }

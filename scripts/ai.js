@@ -3,11 +3,11 @@ import Dialog from "./Dialog.js";
 import * as GeneralFunctions from "./general.js";
 import DOM from "./dom.js";
 
-// Loads the Ai Summary
-export async function generateTitle(text) {
+// Generates a Title
+export async function generateTitle(text, cachingEnabled = true) {
    DOM.select("aiTitleButton").setStyle({ pointerEvents: "none" });
    DOM.select("aiTitleButtonImage").attr({ src: "/assets/images/loading.png" }).addClass("loadingImage");
-   const answer = await callLLM("title", text, "");
+   const answer = await callLLM("title", text, "", cachingEnabled);
    DOM.select("aiTitleButton").setStyle({ pointerEvents: "auto" });
    DOM.select("aiTitleButtonImage").attr({ src: "/assets/images/star.png" }).removeClass("loadingImage");
    if (!answer) {
@@ -28,6 +28,7 @@ export async function showSummary(clip) {
    DOM.select("aiSummaryButton").setStyle({ pointerEvents: "none" });
    DOM.select("aiSummaryButtonImage").attr({ src: "/assets/images/loading.png" }).addClass("loadingImage");
    const answer = await callLLM("summary", `${clip.title}: ${clip.text}`, "");
+   console.log(answer);
 
    DOM.select("aiSummaryButton").setStyle({ pointerEvents: "auto" });
    DOM.select("aiSummaryButtonImage").attr({ src: "/assets/images/star.png" }).removeClass("loadingImage");
@@ -114,7 +115,9 @@ export async function showFactCheck(clip, visually = true) {
 export async function showQuestion(clip) {
    const inputDialog = new Dialog();
    inputDialog.title = "Enter Your Question";
-   let content = DOM.create("div").append("You can ask anything you want, as long as it's related to the document. The more details you provide, the better the Ai will be able to answer your question.").append(DOM.create("div #aiQuestionInput [contentEditable=true]"));
+   let content = DOM.create("div")
+      .append("You can ask anything you want, as long as it's related to the document. The more details you provide, the better the Ai will be able to answer your question.")
+      .append(DOM.create("div.input #aiQuestionInput [contentEditable=true]"));
    inputDialog.content = content.getFirstElement();
    inputDialog.selectButtonText = "Get Answer";
    inputDialog.show();
@@ -218,11 +221,11 @@ export async function generateQuiz(clip) {
 }
 
 // Calls the Backend which makes the actual API Call to OpenAi / Anthropic
-async function callLLM(action, message, suffix) {
+async function callLLM(action, message, suffix, cachingEnabled = true) {
    const language = navigator.language || navigator.userLanguage;
    const cookieName = `aicacheV2_${await Security.hash(action + language + message + suffix)}`;
    const cachedData = localStorage.getItem(cookieName);
-   if (cachedData?.length > 10) {
+   if (cachedData?.length > 10 && cachingEnabled) {
       return cachedData;
    }
 

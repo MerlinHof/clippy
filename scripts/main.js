@@ -8,11 +8,6 @@ import DOM from "./dom.js";
 let clip = new Clip();
 let scrollPosUpdateEnabled = false;
 
-// Prepare UI
-setTimeout(() => {
-   GeneralFunctions.startBackgroundAnimation();
-}, 100);
-
 // Displays Hint and binds input event to hide it
 setTimeout(() => {
    const textareatext = DOM.select("textareatext");
@@ -207,18 +202,52 @@ function showControlPanel() {
 DOM.select("aiSummaryButton").onClick(() => {
    Ai.showSummary(clip);
 });
-DOM.select("aiFactCheckButton").onClick(() => {
-   Ai.showFactCheck(clip);
-});
-DOM.select("aiQuestionButton").onClick(() => {
-   const top = window.pageYOffset + DOM.select("aiFaqContainer").getTop();
-   GeneralFunctions.smoothScrollTo(top - 100, 800);
-});
+// DOM.select("aiFactCheckButton").onClick(() => {
+//    Ai.showFactCheck(clip);
+// });
+// DOM.select("aiQuestionButton").onClick(() => {
+//    const top = window.pageYOffset + DOM.select("aiFaqContainer").getTop();
+//    GeneralFunctions.smoothScrollTo(top - 100, 800);
+// });
 DOM.select("aiFaqQuestionButton").onClick(() => {
    Ai.showQuestion(clip);
 });
 DOM.select("aiFaqQuestionClearButton").onClick(() => {
    Ai.clearQuestions(clip);
+});
+DOM.select("shareButton").onClick(() => {
+   if (navigator.share) {
+      navigator
+         .share({
+            title: document.title,
+            text: "Ein interessanter Link",
+            url: window.location.href,
+         })
+         .then(() => console.log("Erfolgreich geteilt!"))
+         .catch((error) => console.error("Fehler beim Teilen:", error));
+   } else {
+      console.log("Web Share API wird nicht unterstützt.");
+   }
+});
+DOM.select("editButton").onClick(() => {
+   const inputDialog = new Dialog();
+   inputDialog.title = "Secret Key";
+   let content = DOM.create("div").append("Enter your secret key to access the panel.").append(DOM.create("div.input #panelKeyInput [contentEditable=true]"));
+   inputDialog.content = content.getFirstElement();
+   inputDialog.selectButtonText = "Go To Panel";
+   inputDialog.show();
+   inputDialog.selectButtonClicked = () => {
+      const panelKey = DOM.select("panelKeyInput").getText().trim();
+      if (panelKey.length < 2) return;
+
+      const url = new URL(window.location.href);
+      const baseUrl = url.origin;
+      const hash = url.hash;
+      const id = url.searchParams.get("id");
+      const controlPanelUrl = `${baseUrl}/?id=${id}&panelkey=${panelKey}${hash}`;
+      console.log(controlPanelUrl);
+      window.open(controlPanelUrl, "_blank");
+   };
 });
 
 // Upload Clip
@@ -243,9 +272,10 @@ DOM.select("saveButton").onClick(async () => {
    const successDialog = new Dialog();
    successDialog.imagePath = "/assets/images/happy.png";
    successDialog.title = "You Are Ready To Go!";
-   successDialog.selectButtonText = "Copy Both Links";
+   successDialog.selectButtonText = "Copy Overview";
    successDialog.closeOnOutsideClick = !clip.isNew;
    const links = clip.getLinks();
+   const keys = clip.getKeys();
 
    let content = DOM.create("div");
    content.append(DOM.create("t .dialogText").setText("Access Your Clip Here:"));
@@ -258,22 +288,22 @@ DOM.select("saveButton").onClick(async () => {
          )
          .append(DOM.create(`a .urlPreview #urlToClip [target=_blank] [href=${links.clip}]`).setText(links.clip)),
    );
-   content.append(DOM.create("t .dialogText").setText("To edit or delete your Clip, use the control panel link. Keep this link private:"));
+   content.append(DOM.create("t .dialogText").setText('To edit or delete your Clip, click "edit" and use this secret key. Never share this key:'));
    content.append(
       DOM.create("div .urlPreviewContainer")
          .append(
             DOM.create("img .copyImage #copyControlPanelUrlIcon [src=/assets/images/copy.png]").onClick(() => {
-               GeneralFunctions.copyToClipboard(links.controlPanel);
+               GeneralFunctions.copyToClipboard(keys.panel);
             }),
          )
-         .append(DOM.create(`a .urlPreview #urlToControlPanel [target=_blank] [href=${links.controlPanel}]`).setText(links.controlPanel)),
+         .append(DOM.create(`a .urlPreview #urlToControlPanel [target=_blank] [href=${links.controlPanel}]`).setText(keys.panel)),
    );
-   content.append(DOM.create("t .dialogText").setText("Make sure to save both links in a secure location. Otherwise you won't be able to access or manage your Clip after this window closes."));
+   content.append(DOM.create("t .dialogText").setText("Make sure to save the link and the key in a secure location. You won't be able to access them ever again after this window closes."));
 
    successDialog.content = content.getFirstElement();
    successDialog.show();
    successDialog.selectButtonClicked = () => {
-      const clipOverviewString = `${clip.title.toUpperCase()}:\n\nLink to Your Clip:\n${links.clip}\n\nLink to Control Panel:\n${links.controlPanel}`;
+      const clipOverviewString = `${clip.title.toUpperCase()}:\n\n[SHAREABLE] Link to Your Clip:\n${links.clip}\n\n[SECRET] Control Panel Key:\n${keys.panel}\n\n[SECRET] Direct Link to Control Panel:\n${links.controlPanel}`;
       GeneralFunctions.copyToClipboard(clipOverviewString);
    };
    successDialog.onClose = () => {
@@ -306,7 +336,8 @@ document.getElementById("deleteButton").addEventListener("click", () => {
          successDialog.closeOnOutsideClick = false;
          successDialog.imagePath = "/assets/images/trash.png";
          successDialog.title = "Deleted Successfully";
-         successDialog.content = "Your Clip has taken its final journey to the land of lost data, leaving behind a void never to be filled again. Remember it fondly, but don't worry – there's plenty of room for new memories. Bye, Clip! 🍃🌈";
+         successDialog.content =
+            "Your Clip has taken its final journey to the land of lost data, leaving behind a void never to be filled again. Remember it fondly, but don't worry – there's plenty of room for new memories. Bye, Clip! 🍃🌈";
          successDialog.show();
       } else {
          window.Location.href = "/";
@@ -321,7 +352,8 @@ textareatext.onInput(setAiTitleButtonState, true);
 textareatitle.onInput(setAiTitleButtonState, true);
 
 function setAiTitleButtonState() {
-   const active = textareatext.getValue().length > 100 && textareatitle.getValue().length == 0;
+   // const active = textareatext.getValue().length > 100 && textareatitle.getValue().length == 0;
+   const active = textareatext.getValue().length > 100;
    DOM.select("aiTitleButton").setStyle({
       opacity: active ? "1" : "0.3",
       pointerEvents: active ? "auto" : "none",
@@ -330,7 +362,7 @@ function setAiTitleButtonState() {
 
 DOM.select("aiTitleButton").onClick(() => {
    const text = DOM.select("textareatext").getValue();
-   Ai.generateTitle(text).then((answer) => {
+   Ai.generateTitle(text, false).then((answer) => {
       DOM.select("textareatitle").setValue(answer);
       setAiTitleButtonState();
    });

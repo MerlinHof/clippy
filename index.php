@@ -37,7 +37,7 @@ createCSRF();
       <div id="textareatitleScrollContainer">
          <input class="textarea" id="textareatitle" type="text" placeholder="Title" />
       </div>
-      <div class="smallButton" id="aiTitleButton">
+      <div class="smallButton aiButton" id="aiTitleButton">
          <img class="buttonImage" id="aiTitleButtonImage" src="/assets/images/star.png">
          Generate Title
       </div>
@@ -66,17 +66,25 @@ createCSRF();
       <t id="viewerTitle"></t>
 
       <div id="aiButtonContainer">
-         <div id="aiSummaryButton" class="smallButton">
+         <div id="aiSummaryButton" class="smallButton aiButton">
             <img src="/assets/images/star.png" id="aiSummaryButtonImage" class="buttonImage">
             Summary
          </div>
-         <div id="aiFactCheckButton" class="smallButton">
+         <!-- <div id="aiFactCheckButton" class="smallButton aiButton">
             <img src="/assets/images/check.png" id="aiFactCheckButtonImage" class="buttonImage">
             Factcheck
-         </div>
-         <div id="aiQuestionButton" class="smallButton">
+         </div> -->
+         <!-- <div id="aiQuestionButton" class="smallButton aiButton">
             <img src="/assets/images/chat.png" class="buttonImage">
             Answers
+         </div> -->
+         <div id="shareButton" class="smallButton">
+            <img src="/assets/images/share.png" class="buttonImage">
+            Share
+         </div>
+         <div id="editButton" class="smallButton">
+            <img src="/assets/images/edit.png" class="buttonImage">
+            Edit
          </div>
       </div>
 

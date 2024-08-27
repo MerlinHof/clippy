@@ -51,6 +51,35 @@
    font-size: 22px;
 }
 
+:root {
+   --themeColor: rgb(245, 250, 255);
+   --negativeThemeColor: rgba(25, 30, 35);
+   --foregroundColor: rgba(255, 255, 255, 0.8);
+   --textColor: rgba(40, 45, 50, 0.9);
+   --invertValue: 0;
+   --negativeInvertValue: 1;
+}
+
+::selection {
+   background-color: rgba(0, 0, 0, 0.1);
+   text-shadow: none;
+}
+
+@media (prefers-color-scheme: dark) {
+   :root {
+      --themeColor: rgb(20, 25, 30);
+      --negativeThemeColor: rgba(230, 235, 240, 1);
+      --foregroundColor: rgba(255, 255, 255, 0.1);
+      --textColor: rgba(210, 215, 220, 0.9);
+      --invertValue: 1;
+      --negativeInvertValue: 0;
+   }
+
+   *::selection {
+      background: rgba(255, 255, 255, 0.15);
+   }
+}
+
 body {
    cursor: default;
    background-color: var(--themeColor);
@@ -64,35 +93,6 @@ body {
    /* width: 100vw;
    background-color: red;
    overflow-x: hidden; */
-}
-
-:root {
-   --themeColor: rgb(255, 253, 250);
-   --negativeThemeColor: rgba(35, 32, 29);
-   --foregroundColor: rgba(255, 250, 240, 0.5);
-   --textColor: rgba(35, 32, 29, 0.9);
-   --invertValue: 0;
-   --negativeInvertValue: 1;
-}
-
-::selection {
-   background-color: rgba(0, 0, 0, 0.1);
-   text-shadow: none;
-}
-
-@media (prefers-color-scheme: dark) {
-   :root {
-      --themeColor: rgb(0, 0, 0);
-      --negativeThemeColor: rgba(235, 225, 215, 1);
-      --foregroundColor: rgba(255, 255, 255, 0.1);
-      --textColor: rgba(210, 200, 190, 1);
-      --invertValue: 1;
-      --negativeInvertValue: 0;
-   }
-
-   *::selection {
-      background: rgba(255, 255, 255, 0.15);
-   }
 }
 
 .button {
@@ -206,9 +206,7 @@ body {
    font-size: 70%;
    margin-top: 20px;
    transition: 0.3s;
-   padding: 10px;
-   padding-left: 18px;
-   padding-right: 18px;
+   padding: 14px 23px;
    border-radius: 100px;
    border: 2px solid rgba(0, 0, 0, 0.1);
    user-select: none;

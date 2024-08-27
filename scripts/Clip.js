@@ -83,6 +83,14 @@ export default class Clip {
       };
    }
 
+   // Returns the keys
+   getKeys() {
+      return {
+         encryption: this.encryptionKey,
+         panel: this.panelKey,
+      };
+   }
+
    // Makes a HTTP Request to the backend
    async callClipController(action, data) {
       const postBody = {

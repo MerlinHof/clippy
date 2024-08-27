@@ -36,7 +36,7 @@ if ($count >= $dailyTotalRequestLimit) {
 // Anthropic API
 // -----------------------------------------------------------------------------------------------
 
-$anthropicApiKey = getenv("ANTHROPIC_API_KEY");
+$apiKey = getenv("ANTHROPIC_API_KEY");
 $action = filter_var($json["action"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $message = filter_var($json["message"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $suffix = filter_var($json["suffix"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -76,7 +76,10 @@ switch ($action) {
       die();
 }
 
-$systemInstruction .= " You will consistently use the Unicode character set and UTF-8-Encoding to correctly display emojis and special characters like \"ä,ö,ü,ß\" and so on. Very Important: Your answer will be in the language " . $language . ", if not specified or logical otherwise!";
+$systemInstruction .=
+   " You will consistently use the Unicode character set and UTF-8-Encoding to correctly display emojis and special characters like \"ä,ö,ü,ß\" and so on. Very Important: Your answer will be in the language " .
+   $language .
+   ", if not specified or logical otherwise!";
 
 $data = [
    "model" => "claude-3-haiku-20240307",
@@ -92,7 +95,7 @@ $data = [
 
 $options = [
    "http" => [
-      "header" => "Content-type: application/json\r\nx-api-key: $anthropicApiKey\r\nanthropic-version: 2023-06-01",
+      "header" => "Content-type: application/json\r\nx-api-key: $apiKey\r\nanthropic-version: 2023-06-01",
       "method" => "POST",
       "content" => json_encode($data),
    ],
@@ -105,5 +108,39 @@ accesslog("ai", "successfullRequests");
 $resData = json_decode($result, true);
 $answer = $resData["content"][0]["text"];
 echo json_encode(["answer" => $answer]);
+
+// -----------------------------------------------------------------------------------------------
+// OpenAI GPT-4o-mini
+// -----------------------------------------------------------------------------------------------
+// $data = [
+//    "model" => "gpt-4o-mini",
+//    "max_tokens" => 1024,
+//    "messages" => [
+//       [
+//          "role" => "system",
+//          "content" => $systemInstruction,
+//       ],
+//       [
+//          "role" => "user",
+//          "content" => substr($message, 0, 64_000) . $suffix,
+//       ],
+//    ],
+// ];
+
+// $options = [
+//    "http" => [
+//       "header" => "Content-type: application/json\r\nAuthorization: Bearer $apiKey",
+//       "method" => "POST",
+//       "content" => json_encode($data),
+//    ],
+// ];
+
+// $context = stream_context_create($options);
+// $result = file_get_contents("https://api.openai.com/v1/chat/completions", false, $context);
+
+// accesslog("ai", "successfullRequests");
+// $resData = json_decode($result, true);
+// $answer = $resData["choices"][0]["message"]["content"];
+// echo json_encode(["answer" => $answer]);
 
 ?>
