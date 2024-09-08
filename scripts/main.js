@@ -76,7 +76,8 @@ async function showViewer() {
    });
    marked.use({ async: true });
    const parsedText = await marked.parse(clip.text);
-   const sanitizedHtml = DOMPurify.sanitize(parsedText);
+   const sanitizedHtml = DOMPurify.sanitize(parsedText, { ADD_TAGS: ["iframe"], ADD_ATTR: ["allow", "allowfullscreen", "frameborder", "scrolling"] });
+
    document.title = clip.title;
    DOM.select("viewerTitle").setText(clip.title);
    DOM.select("viewerText").setContent(sanitizedHtml);
@@ -134,6 +135,8 @@ function modifyHtml() {
          iframe.removeAttribute("src");
          observer.observe(iframe);
       }
+      // Sandbox-Modus für Sicherheit setzen
+      iframe.setAttribute("sandbox", "allow-scripts allow-same-origin");
    });
 
    // Image ALT to Caption

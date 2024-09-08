@@ -125,6 +125,7 @@ echo json_encode(["answer" => $answer]);
 //          "content" => substr($message, 0, 64_000) . $suffix,
 //       ],
 //    ],
+//    "response_format" => ["type" => "json_object"],
 // ];
 
 // $options = [
