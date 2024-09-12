@@ -55,10 +55,6 @@
 
 #viewerText a {
    text-decoration: none;
-   border-radius: 25px;
-   padding: 5px;
-   padding-left: 14px;
-   padding-right: 22px;
    box-sizing: border-box;
    font-family: bold;
    transition: 0.3s;
@@ -67,15 +63,20 @@
    overflow-wrap: break-word;
    max-width: 100%;
    color: var(--negativeThemeColor);
-   box-shadow:
-      inset 0px 0px 0px 2px rgba(0, 0, 0, 0.1),
-      0px 10px 30px transparent;
+   position: relative;
 }
-
-@media (prefers-color-scheme: dark) {
-   #viewerText a {
-      box-shadow: inset 0 0 0px 2px rgba(255, 255, 255, 0.15);
-   }
+#viewerText a::after {
+   content: "";
+   display: block;
+   position: absolute;
+   margin-top: -3px;
+   width: 100%;
+   height: 100px;
+   max-height: 2px;
+   border-radius: 10px;
+   background-color: var(--negativeThemeColor);
+   transition: 0.3s;
+   opacity: 0.3;
 }
 
 #viewerText a::before {
@@ -83,7 +84,7 @@
    display: inline-block;
    width: 15px;
    height: 15px;
-   margin-right: 8px;
+   margin-right: 4px;
    background-image: url("/assets/images/cursor.png");
    opacity: 0.3;
    background-position: center center;
@@ -92,29 +93,19 @@
    filter: invert(var(--invertValue));
 }
 
-@media (pointer: fine) {
+@media (hover: hover) {
    #viewerText a:hover {
-      transform: scale(1.05) translateY(-2px);
-      background-color: var(--themeColor);
-      box-shadow:
-         inset 0px 0px 0px 0px transparent,
-         0px 10px 30px rgba(0, 0, 0, 0.2);
+      transform: scale(1.02);
+   }
+
+   #viewerText a:hover::after {
+      opacity: 1;
+      max-height: 6px;
    }
 
    #viewerText a:hover::before {
       opacity: 1;
       transform: scale(1.4);
-   }
-
-   @media (prefers-color-scheme: dark) {
-      #viewerText a:hover {
-         color: var(--themeColor);
-         background-color: var(--negativeThemeColor);
-         box-shadow: none;
-      }
-      #viewerText a:hover::before {
-         filter: invert(var(--negativeInvertValue));
-      }
    }
 }
 
