@@ -7,24 +7,23 @@
    margin-bottom: 60px;
 }
 
-.aiButton {
+.button.ai {
    margin-top: 0px;
    margin-bottom: 5px;
    color: white;
-   /* background-image: linear-gradient(135deg, rgba(102, 64, 186, 1), rgba(203, 63, 185, 1)); */
    background-image: linear-gradient(45deg, rgba(130, 64, 186, 1), rgba(233, 63, 185, 1));
    border: none;
 }
 
-.aiButton .buttonImage {
+.button.ai img {
    filter: invert(1);
 }
 
-.aiButton:hover {
+.button.ai:hover {
    border: none;
    color: white;
 }
-.aiButton:hover .buttonImage {
+.button.ai:hover img {
    filter: invert(1);
 }
 

@@ -38,19 +38,19 @@ createCSRF();
       <div id="textareatitleScrollContainer">
          <input class="textarea" id="textareatitle" type="text" placeholder="Title" />
       </div>
-      <div class="smallButton aiButton" id="aiTitleButton">
-         <img class="buttonImage" id="aiTitleButtonImage" src="/assets/images/star.png">
+      <div class="button small ai" id="aiTitleButton">
+         <img id="aiTitleButtonImage" src="/assets/images/star.png">
          Generate Title
       </div>
       <textarea class="textarea" id="textareatext"></textarea>
 
       <div id="buttonContainer">
          <button class="button" id="saveButton" type="button">
-            <img class="buttonImage" src="assets/images/tick.png">
+            <img src="assets/images/tick.png">
             Upload
          </button>
          <button class="button" id="deleteButton" type="button">
-            <img class="buttonImage" src="/assets/images/delete.png">
+            <img src="/assets/images/delete.png">
             Delete
          </button>
       </div>
@@ -58,7 +58,7 @@ createCSRF();
       <div id="hintContainer">
          <img src="/assets/images/markdown.png" id="hintImage">
          <t id="hintText">Clippy Supports Markdown</t>
-         <div class="smallButton" onclick="window.location.href='https://www.clippy.cc/?id=db6c36765cf1#f5i0437hf4emplt'" target="_blank"><img class="buttonImage" src="/assets/images/info.png">Learn More</div>
+         <div class="button small" onclick="window.location.href='https://www.clippy.cc/?id=db6c36765cf1#f5i0437hf4emplt'" target="_blank"><img src="/assets/images/info.png">Learn More</div>
       </div>
    </div>
 
@@ -67,25 +67,23 @@ createCSRF();
       <t id="viewerTitle"></t>
 
       <div id="aiButtonContainer">
-         <div id="aiSummaryButton" class="smallButton aiButton">
-            <img src="/assets/images/star.png" id="aiSummaryButtonImage" class="buttonImage">
+         <div id="aiSummaryButton" class="button small ai">
+            <img src="/assets/images/star.png" id="aiSummaryButtonImage">
             Summary
          </div>
-         <!-- <div id="aiFactCheckButton" class="smallButton aiButton">
-            <img src="/assets/images/check.png" id="aiFactCheckButtonImage" class="buttonImage">
+         <!-- <div id="aiFactCheckButton" class="button small ai">
+            <img src="/assets/images/check.png" id="aiFactCheckButtonImage">
             Factcheck
          </div> -->
-         <!-- <div id="aiQuestionButton" class="smallButton aiButton">
-            <img src="/assets/images/chat.png" class="buttonImage">
+         <!-- <div id="aiQuestionButton" class="button small ai">
+            <img src="/assets/images/chat.png">
             Answers
          </div> -->
-         <div id="shareButton" class="smallButton">
-            <img src="/assets/images/share.png" class="buttonImage">
-            Share
+         <div id="shareButton" class="button small iconOnly">
+            <img src="/assets/images/share.png">
          </div>
-         <div id="editButton" class="smallButton">
-            <img src="/assets/images/edit.png" class="buttonImage">
-            Edit
+         <div id="editButton" class="button small iconOnly">
+            <img src="/assets/images/edit.png">
          </div>
       </div>
 
@@ -112,8 +110,8 @@ createCSRF();
             <img src="/assets/images/loading.png" class="loadingImage" style="width: 40px; height: 40px;" />
          </div>
          <div id="aiFaqButtonContainer">
-             <div id="aiFaqQuestionButton" class="button"><img src="/assets/images/add.png" class="buttonImage">Ask Question</div>
-             <div id="aiFaqQuestionClearButton" class="button secondaryButton"><img src="/assets/images/trash2.png" class="buttonImage">Clear History</div>
+             <div id="aiFaqQuestionButton" class="button"><img src="/assets/images/add.png">Ask Question</div>
+             <div id="aiFaqQuestionClearButton" class="button secondary"><img src="/assets/images/trash2.png">Clear History</div>
          </div>
       </div>
    </div>
